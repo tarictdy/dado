@@ -1,0 +1,15 @@
+.dashboard-header {
+  margin-top: 2rem;
+  padding: 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#role-actions {
+  margin: 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}

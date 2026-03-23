@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DADO — Profil</title>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/auth.css" />
+  </head>
+  <body>
+    <main class="auth-layout">
+      <section class="auth-card card">
+        <a class="brand" href="/dashboard.html">DADO</a>
+        <h1>Compléter le profil</h1>
+        <form id="profile-form" class="form-grid">
+          <label>Ville<input name="city" type="text" placeholder="Abidjan" required /></label>
+          <label>Bio<textarea name="bio" rows="4" placeholder="Présentez votre activité"></textarea></label>
+          <label>Catégories<input name="categories" type="text" placeholder="massage relaxant, huiles, accessoires" /></label>
+          <button class="button primary" type="submit">Enregistrer</button>
+        </form>
+        <p id="status" class="status"></p>
+      </section>
+    </main>
+
+    <script type="module" src="/assets/js/pages/profile.page.js"></script>
+  </body>
+</html>
