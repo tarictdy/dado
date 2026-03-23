@@ -9,6 +9,8 @@ export async function updateUserProfile(uid, payload) {
     throw new Error('Utilisateur introuvable.');
   }
 
+  console.log('[DADO][user.service] updateUserProfile called with:', { uid, payload });
+
   const updates = {
     city: payload.city || '',
     bio: payload.bio || '',
@@ -19,5 +21,6 @@ export async function updateUserProfile(uid, payload) {
 
   await userRef.set(updates, { merge: true });
   const updatedDoc = await userRef.get();
+  console.log('[DADO][user.service] Firestore users/%s updated successfully.', uid);
   return { id: updatedDoc.id, ...updatedDoc.data() };
 }

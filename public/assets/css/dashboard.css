@@ -1,15 +1,43 @@
 .dashboard-header {
   margin-top: 2rem;
-  padding: 1.8rem;
+  padding: 2rem;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
+  background: linear-gradient(135deg, rgba(255, 77, 141, 0.16), rgba(124, 92, 255, 0.16));
 }
+
+.dashboard-header h1 {
+  margin: 0.6rem 0 0.4rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.dashboard-header p { margin: 0; color: var(--muted); }
+
 #role-actions {
   margin: 0;
   padding-left: 1rem;
   display: grid;
+  gap: 0.65rem;
+}
+
+.dashboard-grid .card {
+  min-height: 220px;
+  background: linear-gradient(180deg, rgba(43, 20, 66, 0.95), rgba(26, 11, 42, 0.95));
+}
+
+.dashboard-grid li::marker { color: var(--primary); }
+
+.profile-highlight {
+  display: inline-flex;
   gap: 0.5rem;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  margin-top: 0.8rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  color: #ffd4e5;
+  font-weight: 700;
 }

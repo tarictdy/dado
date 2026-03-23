@@ -10,9 +10,16 @@
   <body>
     <main class="auth-layout">
       <section class="auth-card card">
-        <a class="brand" href="/index.html">DADO</a>
-        <h1>Connexion</h1>
-        <p>Entrez votre numéro, recevez un code OTP et accédez à votre dashboard.</p>
+        <a class="brand" href="/index.html">❤ DADO</a>
+        <span class="badge">Connexion</span>
+        <h1>Retrouve ton espace en quelques secondes.</h1>
+        <p>Entre ton numéro, valide le SMS OTP et recharge ton profil Firebase instantanément.</p>
+
+        <ul class="auth-hero-list">
+          <li>Connexion fluide par téléphone.</li>
+          <li>Profil récupéré depuis Firestore.</li>
+          <li>Logs de connexion disponibles dans la console.</li>
+        </ul>
 
         <form id="login-form" class="form-grid">
           <label>
@@ -32,6 +39,10 @@
 
         <div id="recaptcha-container"></div>
         <p id="status" class="status"></p>
+        <div class="auth-note">
+          <strong>Note debug :</strong> le code OTP SMS n’est pas exposé par Firebase côté client. En revanche,
+          l’état de connexion et le profil chargé sont loggés pour vérification.
+        </div>
         <p class="helper">Pas encore de compte ? <a href="/register.html">Créer un compte</a>.</p>
       </section>
     </main>

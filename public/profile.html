@@ -10,8 +10,10 @@
   <body>
     <main class="auth-layout">
       <section class="auth-card card">
-        <a class="brand" href="/dashboard.html">DADO</a>
-        <h1>Compléter le profil</h1>
+        <a class="brand" href="/dashboard.html">❤ DADO</a>
+        <span class="badge">Profil</span>
+        <h1>Peaufine ton profil.</h1>
+        <p>Ajoute une ville, une bio et des catégories pour enrichir ta présence dans l’application.</p>
         <form id="profile-form" class="form-grid">
           <label>Ville<input name="city" type="text" placeholder="Abidjan" required /></label>
           <label>Bio<textarea name="bio" rows="4" placeholder="Présentez votre activité"></textarea></label>
@@ -19,6 +21,9 @@
           <button class="button primary" type="submit">Enregistrer</button>
         </form>
         <p id="status" class="status"></p>
+        <div class="auth-note">
+          <strong>Info :</strong> la mise à jour du profil est sauvegardée dans Firestore et loggée côté navigateur et backend.
+        </div>
       </section>
     </main>
 
