@@ -10,9 +10,16 @@
   <body>
     <main class="auth-layout">
       <section class="auth-card card">
-        <a class="brand" href="/index.html">DADO</a>
-        <h1>Créer un compte</h1>
-        <p>Inscription simple par numéro avec vérification OTP Firebase.</p>
+        <a class="brand" href="/index.html">❤ DADO</a>
+        <span class="badge">Inscription</span>
+        <h1>Crée un profil qui donne envie de matcher.</h1>
+        <p>Design dating app, vérification Firebase par SMS et sauvegarde immédiate dans Firestore.</p>
+
+        <ul class="auth-hero-list">
+          <li>Numéro vérifié par OTP Firebase.</li>
+          <li>Profil enregistré dans la base <strong>users</strong>.</li>
+          <li>Logs visibles pour suivre l’inscription.</li>
+        </ul>
 
         <form id="register-form" class="form-grid">
           <label>
@@ -21,7 +28,7 @@
           </label>
           <label>
             Pseudo
-            <input name="pseudo" type="text" placeholder="Ex: dado.bienetre" required />
+            <input name="pseudo" type="text" placeholder="Ex: coeur.violet" required />
           </label>
           <label>
             Date de naissance
@@ -52,6 +59,10 @@
 
         <div id="recaptcha-container"></div>
         <p id="status" class="status"></p>
+        <div class="auth-note">
+          <strong>Note debug :</strong> Firebase ne renvoie pas le code SMS OTP réel au navigateur. Les logs montrent
+          surtout le payload envoyé, l’UID Firebase et la réponse Firestore.
+        </div>
         <p class="helper">Déjà inscrit ? <a href="/login.html">Connectez-vous</a>.</p>
       </section>
     </main>

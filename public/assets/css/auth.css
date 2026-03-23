@@ -4,33 +4,99 @@
   place-items: center;
   padding: 1.5rem;
 }
+
 .auth-card {
-  width: min(100%, 560px);
-  padding: 2rem;
+  width: min(100%, 640px);
+  padding: 2.2rem;
+  background: linear-gradient(180deg, rgba(47, 22, 72, 0.95), rgba(26, 11, 42, 0.95));
 }
+
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 900;
-  letter-spacing: 0.12em;
-  color: #4f46e5;
+  letter-spacing: 0.16em;
+  color: #ffd4e5;
+  margin-bottom: 0.5rem;
 }
+
+.auth-card h1 {
+  margin: 0.4rem 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.auth-card > p {
+  color: var(--muted);
+  margin-top: 0;
+}
+
 .form-grid {
   display: grid;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
 }
+
 label {
   display: grid;
-  gap: 0.4rem;
-  font-weight: 600;
+  gap: 0.45rem;
+  font-weight: 700;
+  color: #ffe8f2;
 }
+
 input, select, textarea {
   width: 100%;
-  padding: 0.9rem 1rem;
-  border-radius: 14px;
-  border: 1px solid #cbd5e1;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
   font: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
+
+input::placeholder,
+textarea::placeholder { color: rgba(255, 243, 251, 0.52); }
+
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(255, 77, 141, 0.8);
+  box-shadow: 0 0 0 4px rgba(255, 77, 141, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .helper {
-  color: #64748b;
+  color: var(--muted);
   margin-top: 1rem;
+}
+
+.helper a,
+.auth-note strong {
+  color: #ffd4e5;
+}
+
+.auth-note {
+  margin-top: 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.auth-hero-list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.auth-hero-list li {
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--muted);
 }

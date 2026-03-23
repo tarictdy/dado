@@ -12,9 +12,12 @@ export async function registerProfile(req, res) {
       return res.status(403).json({ message: 'UID incohérent avec le token Firebase.' });
     }
 
+    console.log('[DADO][auth.controller] Register profile request accepted for uid:', uid);
     const user = await createOrUpdateUserProfile({ uid, fullName, pseudo, phone, birthDate, role });
+    console.log('[DADO][auth.controller] Register profile response:', { id: user.id, pseudo: user.pseudo, role: user.role });
     return res.status(201).json({ message: 'Profil DADO créé avec succès.', user });
   } catch (error) {
+    console.error('[DADO][auth.controller] registerProfile failed:', error);
     return res.status(400).json({ message: error.message });
   }
 }
@@ -27,6 +30,7 @@ export async function me(req, res) {
     }
     return res.json({ user });
   } catch (error) {
+    console.error('[DADO][auth.controller] me failed:', error);
     return res.status(500).json({ message: 'Impossible de charger le profil.', details: error.message });
   }
 }

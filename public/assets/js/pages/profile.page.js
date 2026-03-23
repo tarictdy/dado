@@ -20,12 +20,15 @@ form?.addEventListener('submit', async (event) => {
   };
 
   try {
-    await updateProfile(payload);
+    console.log('[DADO][profile] update payload:', payload);
+    const response = await updateProfile(payload);
+    console.log('[DADO][profile] Firestore profile updated:', response);
     setStatus(statusElement, 'Profil mis à jour. Redirection vers le dashboard...');
     setTimeout(() => {
       window.location.href = '/dashboard.html';
     }, 900);
   } catch (error) {
+    console.error('[DADO][profile] profile update failed:', error);
     setStatus(statusElement, error.message, true);
   }
 });

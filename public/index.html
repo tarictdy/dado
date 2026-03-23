@@ -3,36 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DADO — Marketplace bien-être & produits</title>
+    <title>DADO — Rencontres, matching & profils premium</title>
     <link rel="stylesheet" href="/assets/css/base.css" />
   </head>
   <body>
     <main class="landing-page">
+      <span class="soft-glow one"></span>
+      <span class="soft-glow two"></span>
+
       <section class="hero card">
-        <span class="badge">DADO</span>
-        <h1>Marketplace de bien-être et produits avec publication premium.</h1>
+        <span class="badge">DADO Dating</span>
+        <h1>Le style d’un vrai site de rencontre, avec inscription OTP et profils Firebase.</h1>
         <p>
-          DADO permet aux clients de découvrir des prestations et aux prestataires de publier,
-          monétiser et gérer leur visibilité avec un abonnement payant.
+          Créez un compte élégant, vérifiez votre numéro avec Firebase, complétez votre profil
+          et retrouvez chaque utilisateur enregistré dans Firestore avec un dashboard plus séduisant.
         </p>
         <div class="actions">
-          <a class="button primary" href="/register.html">Créer un compte</a>
-          <a class="button secondary" href="/login.html">Se connecter</a>
+          <a class="button primary" href="/register.html">Créer mon profil</a>
+          <a class="button secondary" href="/login.html">J’ai déjà un compte</a>
+        </div>
+        <div class="hero-stats">
+          <article class="stat-pill">
+            <strong>OTP</strong>
+            <span>Connexion rapide par téléphone</span>
+          </article>
+          <article class="stat-pill">
+            <strong>Firestore</strong>
+            <span>Profils sauvegardés côté Firebase</span>
+          </article>
+          <article class="stat-pill">
+            <strong>Match vibe</strong>
+            <span>UI immersive style dating app</span>
+          </article>
         </div>
       </section>
 
       <section class="feature-grid">
         <article class="card">
-          <h2>Inscription rapide</h2>
-          <p>OTP Firebase par téléphone, pseudo unique et redirection intelligente.</p>
+          <h2>Ambiance premium</h2>
+          <p>Palette néon, cartes glassmorphism et parcours plus chaleureux sur chaque page.</p>
         </article>
         <article class="card">
-          <h2>Rôles métiers</h2>
-          <p>Client, prestataire ou vendeur produit avec dashboard adapté.</p>
+          <h2>Création utilisateur</h2>
+          <p>Chaque inscription validée écrit le profil dans la collection <strong>users</strong> de Firestore.</p>
         </article>
         <article class="card">
-          <h2>Monétisation</h2>
-          <p>Abonnement premium pour publier et apparaître dans la recherche.</p>
+          <h2>Logs utiles</h2>
+          <p>Des logs front et back affichent le payload, l’UID et la réponse d’enregistrement pour déboguer vite.</p>
         </article>
       </section>
     </main>
