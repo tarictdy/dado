@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DADO — Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/dashboard.css" />
+  </head>
+  <body>
+    <main class="dashboard-layout">
+      <header class="card dashboard-header">
+        <div>
+          <span class="badge">DADO</span>
+          <h1 id="dashboard-title">Bienvenue</h1>
+          <p id="dashboard-subtitle">Chargement de votre espace...</p>
+        </div>
+        <div class="actions">
+          <a class="button secondary" href="/profile.html">Compléter le profil</a>
+          <button class="button primary" id="logout-button" type="button">Déconnexion</button>
+        </div>
+      </header>
+
+      <section class="dashboard-grid">
+        <article class="card"><h2>Profil</h2><p id="profile-summary"></p></article>
+        <article class="card"><h2>Monétisation</h2><p id="subscription-summary"></p></article>
+        <article class="card"><h2>Actions clés</h2><ul id="role-actions"></ul></article>
+      </section>
+    </main>
+
+    <script type="module" src="/assets/js/pages/dashboard.page.js"></script>
+  </body>
+</html>

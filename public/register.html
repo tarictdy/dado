@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DADO — Inscription</title>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/auth.css" />
+  </head>
+  <body>
+    <main class="auth-layout">
+      <section class="auth-card card">
+        <a class="brand" href="/index.html">DADO</a>
+        <h1>Créer un compte</h1>
+        <p>Inscription simple par numéro avec vérification OTP Firebase.</p>
+
+        <form id="register-form" class="form-grid">
+          <label>
+            Nom complet
+            <input name="fullName" type="text" placeholder="Ex: Fatou Diop" required />
+          </label>
+          <label>
+            Pseudo
+            <input name="pseudo" type="text" placeholder="Ex: dado.bienetre" required />
+          </label>
+          <label>
+            Date de naissance
+            <input name="birthDate" type="date" required />
+          </label>
+          <label>
+            Téléphone
+            <input name="phone" type="tel" placeholder="+2250700000000" required />
+          </label>
+          <label>
+            Rôle
+            <select name="role" required>
+              <option value="CLIENT">Client</option>
+              <option value="PRESTATAIRE">Prestataire</option>
+              <option value="VENDEUR_PRODUIT">Vendeur produit</option>
+            </select>
+          </label>
+          <button class="button primary" type="submit">Recevoir le code OTP</button>
+        </form>
+
+        <form id="otp-form" class="form-grid hidden">
+          <label>
+            Code OTP
+            <input name="otp" type="text" inputmode="numeric" maxlength="6" placeholder="123456" required />
+          </label>
+          <button class="button primary" type="submit">Valider et continuer</button>
+        </form>
+
+        <div id="recaptcha-container"></div>
+        <p id="status" class="status"></p>
+        <p class="helper">Déjà inscrit ? <a href="/login.html">Connectez-vous</a>.</p>
+      </section>
+    </main>
+
+    <script type="module" src="/assets/js/pages/register.page.js"></script>
+  </body>
+</html>
