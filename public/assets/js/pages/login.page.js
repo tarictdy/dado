@@ -9,7 +9,7 @@ const statusElement = document.getElementById('status');
 loginForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const formData = new FormData(loginForm);
-  const phone = formData.get('phone');
+  const phone = String(formData.get('phone') || '').replace(/\s+/g, '');
   console.log('[DADO][login] OTP requested for phone:', phone);
 
   try {
