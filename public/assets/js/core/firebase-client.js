@@ -8,13 +8,16 @@ import {
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyD7ZxpQM70Hj5aroyCWSS0dvtwgFi0JjE0',
-  authDomain: 'avra-e8665.firebaseapp.com',
-  projectId: 'avra-e8665',
-  storageBucket: 'avra-e8665.firebasestorage.app',
-  messagingSenderId: '962028328457',
-  appId: '1:962028328457:web:5dbf262929347fbba14ad8',
+  apiKey: 'AIzaSyAb2NR_aVqhdzfsu_ouGMXfHF5jkq2cxtQ',
+  authDomain: 'dodo-adbfc.firebaseapp.com',
+  projectId: 'dodo-adbfc',
+  storageBucket: 'dodo-adbfc.firebasestorage.app',
+  messagingSenderId: '883360874679',
+  appId: '1:883360874679:web:35ed08a206d1ad3cb88d32',
 };
+
+// OAuth 2.0 Web Client ID (Firebase project dodo-adbfc)
+const webOAuthClientId = '883360874679-hduihu360dp69og3jl9p2p8r0g3bhfss.apps.googleusercontent.com';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -22,13 +25,16 @@ const auth = getAuth(app);
 auth.languageCode = 'fr';
 
 let recaptchaVerifier;
+let recaptchaTargetId;
 
-function getRecaptchaVerifier(containerId = 'recaptcha-container') {
-  if (!recaptchaVerifier) {
-    recaptchaVerifier = new RecaptchaVerifier(auth, containerId, {
-      size: 'normal',
+function getRecaptchaVerifier(targetId = 'sign-in-button') {
+  if (!recaptchaVerifier || recaptchaTargetId !== targetId) {
+    recaptchaTargetId = targetId;
+    recaptchaVerifier = new RecaptchaVerifier(auth, targetId, {
+      size: 'invisible',
       callback: () => {},
     });
+    window.recaptchaVerifier = recaptchaVerifier;
     recaptchaVerifier.render();
   }
   return recaptchaVerifier;
@@ -37,6 +43,7 @@ function getRecaptchaVerifier(containerId = 'recaptcha-container') {
 export {
   app,
   auth,
+  webOAuthClientId,
   getRecaptchaVerifier,
   signInWithPhoneNumber,
   onAuthStateChanged,

@@ -7,9 +7,27 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/auth.css" />
   </head>
-  <body>
-    <main class="auth-layout">
-      <section class="auth-card card">
+  <body class="page one-container nav-below-header">
+    <header class="site-header">
+      <div class="inside-header grid-container">
+        <p class="main-title"><a href="/index.html">DADO</a></p>
+      </div>
+    </header>
+
+    <nav class="main-navigation nav-align-center" aria-label="Navigation principale">
+      <div class="inside-navigation grid-container">
+        <div class="main-nav">
+          <ul class="menu">
+            <li><a href="/index.html">Accueil</a></li>
+            <li><a href="/register.html">Inscription</a></li>
+            <li><a href="/login.html">Connexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="auth-layout site-content">
+      <section class="auth-card inside-article wp-block-group__inner-container">
         <a class="brand" href="/index.html">❤ DADO</a>
         <span class="badge">Inscription</span>
         <h1>Crée un profil qui donne envie de matcher.</h1>
@@ -46,7 +64,7 @@
               <option value="VENDEUR_PRODUIT">Vendeur produit</option>
             </select>
           </label>
-          <button class="button primary" type="submit">Recevoir le code OTP</button>
+          <button id="sign-in-button" class="button primary" type="submit">Recevoir le code OTP</button>
         </form>
 
         <form id="otp-form" class="form-grid hidden">
