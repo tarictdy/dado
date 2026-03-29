@@ -7,23 +7,28 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/auth.css" />
   </head>
-  <body>
-    <div class="site-shell">
-      <header class="site-header">
-        <div class="header-inner">
-          <p class="main-title"><a href="/index.html">DADO</a></p>
-          <nav class="main-navigation" aria-label="Navigation principale">
-            <ul>
-              <li><a href="/index.html">Accueil</a></li>
-              <li><a href="/register.html">Inscription</a></li>
-              <li><a href="/login.html">Connexion</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+  <body class="page one-container nav-below-header">
+    <header class="site-header">
+      <div class="inside-header grid-container">
+        <p class="main-title"><a href="/index.html">DADO</a></p>
+      </div>
+    </header>
 
-      <main class="main-container auth-layout">
-        <section class="auth-card card">
+    <nav class="main-navigation nav-align-center" aria-label="Navigation principale">
+      <div class="inside-navigation grid-container">
+        <div class="main-nav">
+          <ul class="menu">
+            <li><a href="/index.html">Accueil</a></li>
+            <li><a href="/register.html">Inscription</a></li>
+            <li><a href="/login.html">Connexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="site-content auth-layout">
+      <main class="site-main wp-block-group__inner-container">
+        <section class="inside-article auth-card">
           <a class="brand" href="/index.html">❤ DADO</a>
           <span class="badge">Connexion</span>
           <h1>Retrouve ton espace en quelques secondes.</h1>
@@ -60,6 +65,7 @@
           <p class="helper">Pas encore de compte ? <a href="/register.html">Créer un compte</a>.</p>
         </section>
       </main>
+    </div>
 
       <script type="module" src="/assets/js/pages/login.page.js"></script>
     </div>

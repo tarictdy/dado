@@ -6,23 +6,28 @@
     <title>DADO — Rencontres, matching & profils premium</title>
     <link rel="stylesheet" href="/assets/css/base.css" />
   </head>
-  <body>
-    <div class="site-shell">
-      <header class="site-header">
-        <div class="header-inner">
-          <p class="main-title"><a href="/index.html">DADO</a></p>
-          <nav class="main-navigation" aria-label="Navigation principale">
-            <ul>
-              <li><a href="/index.html">Accueil</a></li>
-              <li><a href="/register.html">Inscription</a></li>
-              <li><a href="/login.html">Connexion</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+  <body class="home one-container nav-below-header">
+    <header class="site-header">
+      <div class="inside-header grid-container">
+        <p class="main-title"><a href="/index.html">DADO</a></p>
+      </div>
+    </header>
 
-      <main class="main-container">
-        <section class="hero card">
+    <nav class="main-navigation nav-align-center" aria-label="Navigation principale">
+      <div class="inside-navigation grid-container">
+        <div class="main-nav">
+          <ul class="menu">
+            <li><a href="/index.html">Accueil</a></li>
+            <li><a href="/register.html">Inscription</a></li>
+            <li><a href="/login.html">Connexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="site-content">
+      <main class="site-main">
+        <section class="inside-article hero">
           <span class="badge">Dado Dating</span>
           <h1>Le style d’un vrai site de rencontre avec une palette rose premium.</h1>
           <p>
@@ -51,23 +56,23 @@
           </div>
         </section>
 
-        <section class="feature-grid">
-          <article class="card">
+        <section class="wp-block-group__inner-container feature-grid">
+          <article class="inside-article">
             <h2>Ambiance premium</h2>
             <p>Palette inspirée de ton design, navigation uppercase et cartes aérées.</p>
           </article>
-          <article class="card">
+          <article class="inside-article">
             <h2>Création utilisateur</h2>
             <p>Chaque inscription validée écrit le profil dans la collection <strong>users</strong> de Firestore.</p>
           </article>
-          <article class="card">
+          <article class="inside-article">
             <h2>Logs utiles</h2>
             <p>Des logs front et back affichent le payload, l’UID et la réponse d’enregistrement.</p>
           </article>
         </section>
 
-        <section class="content-grid">
-          <article class="card content-card">
+        <section class="wp-block-group__inner-container content-grid">
+          <article class="inside-article content-card">
             <h2>Comment ça marche</h2>
             <ol>
               <li>Inscription rapide avec numéro de téléphone + OTP Firebase.</li>
@@ -75,7 +80,7 @@
               <li>Accès dashboard pour gérer visibilité et activité.</li>
             </ol>
           </article>
-          <article class="card content-card">
+          <article class="inside-article content-card">
             <h2>Pourquoi DADO</h2>
             <ul>
               <li>Identité vérifiée pour limiter les faux profils.</li>
@@ -85,7 +90,7 @@
           </article>
         </section>
 
-        <section class="card faq">
+        <section class="inside-article faq wp-block-group__inner-container">
           <h2>FAQ rapide</h2>
           <details>
             <summary>Mes données sont-elles sauvegardées ?</summary>
