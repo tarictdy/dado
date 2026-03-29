@@ -3,8 +3,10 @@ import { createOrUpdateUserProfile, getAuthenticatedUser } from '../services/aut
 export async function registerProfile(req, res) {
   try {
     const { uid, fullName, pseudo, phone, birthDate, role } = req.body;
+    const normalizedPhone = String(phone || '').replace(/\s+/g, '');
+    const tokenPhone = String(req.auth?.phone_number || '').replace(/\s+/g, '');
 
-    if (!uid || !fullName || !pseudo || !phone || !birthDate || !role) {
+    if (!uid || !fullName || !pseudo || !normalizedPhone || !birthDate || !role) {
       return res.status(400).json({ message: 'Tous les champs requis doivent être fournis.' });
     }
 
@@ -12,8 +14,12 @@ export async function registerProfile(req, res) {
       return res.status(403).json({ message: 'UID incohérent avec le token Firebase.' });
     }
 
+    if (tokenPhone && tokenPhone !== normalizedPhone) {
+      return res.status(403).json({ message: 'Le téléphone fourni ne correspond pas au compte Firebase.' });
+    }
+
     console.log('[DADO][auth.controller] Register profile request accepted for uid:', uid);
-    const user = await createOrUpdateUserProfile({ uid, fullName, pseudo, phone, birthDate, role });
+    const user = await createOrUpdateUserProfile({ uid, fullName, pseudo, phone: normalizedPhone, birthDate, role });
     console.log('[DADO][auth.controller] Register profile response:', { id: user.id, pseudo: user.pseudo, role: user.role });
     return res.status(201).json({ message: 'Profil DADO créé avec succès.', user });
   } catch (error) {
