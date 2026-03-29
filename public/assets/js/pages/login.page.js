@@ -14,7 +14,7 @@ loginForm?.addEventListener('submit', async (event) => {
 
   try {
     setStatus(statusElement, 'Envoi du code OTP...');
-    const confirmationResult = await sendOTP(phone, 'recaptcha-container');
+    const confirmationResult = await sendOTP(phone, 'sign-in-button');
     console.log('[DADO][login] OTP request started. verificationId:', confirmationResult?.verificationId || 'indisponible');
     otpForm.classList.remove('hidden');
     setStatus(statusElement, 'OTP envoyé. Renseignez le code reçu.');

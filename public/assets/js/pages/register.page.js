@@ -16,7 +16,7 @@ registerForm?.addEventListener('submit', async (event) => {
 
   try {
     setStatus(statusElement, 'Envoi du code OTP...');
-    const confirmationResult = await sendOTP(pendingProfile.phone, 'recaptcha-container');
+    const confirmationResult = await sendOTP(pendingProfile.phone, 'sign-in-button');
     console.log('[DADO][register] OTP request started. verificationId:', confirmationResult?.verificationId || 'indisponible');
     otpForm.classList.remove('hidden');
     setStatus(statusElement, 'Code envoyé. Entrez l’OTP reçu par SMS.');
