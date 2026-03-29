@@ -7,51 +7,100 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
   </head>
   <body>
-    <main class="landing-page">
-      <span class="soft-glow one"></span>
-      <span class="soft-glow two"></span>
-
-      <section class="hero card">
-        <span class="badge">DADO Dating</span>
-        <h1>Le style d’un vrai site de rencontre, avec inscription OTP et profils Firebase.</h1>
-        <p>
-          Créez un compte élégant, vérifiez votre numéro avec Firebase, complétez votre profil
-          et retrouvez chaque utilisateur enregistré dans Firestore avec un dashboard plus séduisant.
-        </p>
-        <div class="actions">
-          <a class="button primary" href="/register.html">Créer mon profil</a>
-          <a class="button secondary" href="/login.html">J’ai déjà un compte</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="header-inner">
+          <p class="main-title"><a href="/index.html">DADO</a></p>
+          <nav class="main-navigation" aria-label="Navigation principale">
+            <ul>
+              <li><a href="/index.html">Accueil</a></li>
+              <li><a href="/register.html">Inscription</a></li>
+              <li><a href="/login.html">Connexion</a></li>
+            </ul>
+          </nav>
         </div>
-        <div class="hero-stats">
-          <article class="stat-pill">
-            <strong>OTP</strong>
-            <span>Connexion rapide par téléphone</span>
-          </article>
-          <article class="stat-pill">
-            <strong>Firestore</strong>
-            <span>Profils sauvegardés côté Firebase</span>
-          </article>
-          <article class="stat-pill">
-            <strong>Match vibe</strong>
-            <span>UI immersive style dating app</span>
-          </article>
-        </div>
-      </section>
+      </header>
 
-      <section class="feature-grid">
-        <article class="card">
-          <h2>Ambiance premium</h2>
-          <p>Palette néon, cartes glassmorphism et parcours plus chaleureux sur chaque page.</p>
-        </article>
-        <article class="card">
-          <h2>Création utilisateur</h2>
-          <p>Chaque inscription validée écrit le profil dans la collection <strong>users</strong> de Firestore.</p>
-        </article>
-        <article class="card">
-          <h2>Logs utiles</h2>
-          <p>Des logs front et back affichent le payload, l’UID et la réponse d’enregistrement pour déboguer vite.</p>
-        </article>
-      </section>
-    </main>
+      <main class="main-container">
+        <section class="hero card">
+          <span class="badge">Dado Dating</span>
+          <h1>Le style d’un vrai site de rencontre avec une palette rose premium.</h1>
+          <p>
+            Créez un compte élégant, vérifiez votre numéro avec Firebase, complétez votre profil
+            et retrouvez chaque utilisateur enregistré dans Firestore avec une interface claire et moderne.
+          </p>
+
+          <div class="actions">
+            <a class="button primary" href="/register.html">Créer mon profil</a>
+            <a class="button secondary" href="/login.html">J’ai déjà un compte</a>
+          </div>
+
+          <div class="hero-stats">
+            <article class="stat-pill">
+              <strong>OTP</strong>
+              <span>Connexion rapide par téléphone</span>
+            </article>
+            <article class="stat-pill">
+              <strong>Firestore</strong>
+              <span>Profils sauvegardés côté Firebase</span>
+            </article>
+            <article class="stat-pill">
+              <strong>Match vibe</strong>
+              <span>Expérience immersive style dating app</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="feature-grid">
+          <article class="card">
+            <h2>Ambiance premium</h2>
+            <p>Palette inspirée de ton design, navigation uppercase et cartes aérées.</p>
+          </article>
+          <article class="card">
+            <h2>Création utilisateur</h2>
+            <p>Chaque inscription validée écrit le profil dans la collection <strong>users</strong> de Firestore.</p>
+          </article>
+          <article class="card">
+            <h2>Logs utiles</h2>
+            <p>Des logs front et back affichent le payload, l’UID et la réponse d’enregistrement.</p>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="card content-card">
+            <h2>Comment ça marche</h2>
+            <ol>
+              <li>Inscription rapide avec numéro de téléphone + OTP Firebase.</li>
+              <li>Création de profil enrichi (bio, ville, catégories, objectifs).</li>
+              <li>Accès dashboard pour gérer visibilité et activité.</li>
+            </ol>
+          </article>
+          <article class="card content-card">
+            <h2>Pourquoi DADO</h2>
+            <ul>
+              <li>Identité vérifiée pour limiter les faux profils.</li>
+              <li>Expérience mobile-first et parcours en 2 étapes.</li>
+              <li>Base Firestore prête pour matching, annonces et premium.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="card faq">
+          <h2>FAQ rapide</h2>
+          <details>
+            <summary>Mes données sont-elles sauvegardées ?</summary>
+            <p>Oui, les profils validés sont stockés dans la collection <strong>users</strong> de Firestore.</p>
+          </details>
+          <details>
+            <summary>Que faire si je ne reçois pas le code OTP ?</summary>
+            <p>Vérifie le format international du numéro puis relance l’envoi depuis la page de connexion/inscription.</p>
+          </details>
+          <details>
+            <summary>Puis-je compléter mon profil plus tard ?</summary>
+            <p>Oui, après connexion tu es redirigé vers la page profil si ton compte n’est pas encore complété.</p>
+          </details>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
