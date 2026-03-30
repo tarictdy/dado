@@ -3,8 +3,7 @@ import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInAnonymously,
   onAuthStateChanged,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
@@ -48,8 +47,7 @@ export {
   webOAuthClientId,
   getRecaptchaVerifier,
   signInWithPhoneNumber,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInAnonymously,
   onAuthStateChanged,
   signOut,
 };

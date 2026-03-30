@@ -1,9 +1,8 @@
 import {
   auth,
-  createUserWithEmailAndPassword,
   getRecaptchaVerifier,
   onAuthStateChanged,
-  signInWithEmailAndPassword,
+  signInAnonymously,
   signInWithPhoneNumber,
   signOut,
 } from './firebase-client.js';
@@ -11,7 +10,7 @@ import {
 let confirmationResultCache = null;
 let localOtpSession = null;
 const BYPASS_SMS_OTP = true;
-const DEV_PASSWORD = 'Dado_Dev_2026!';
+const DEV_PHONE_STORAGE_KEY = 'dadoDevPhone';
 
 export async function sendOTP(phone, containerId) {
   const normalizedPhone = String(phone || '').replace(/\s+/g, '');
@@ -52,23 +51,14 @@ export async function verifyOTP(code) {
       throw new Error('OTP incorrect.');
     }
 
-    const email = `${localOtpSession.phone.replace(/\D/g, '')}@dado.local`;
-    try {
-      const credential = await signInWithEmailAndPassword(auth, email, DEV_PASSWORD);
-      return {
-        ...credential.user,
-        phoneNumber: localOtpSession.phone,
-      };
-    } catch (error) {
-      if (error?.code !== 'auth/invalid-credential' && error?.code !== 'auth/user-not-found') {
-        throw error;
-      }
-      const credential = await createUserWithEmailAndPassword(auth, email, DEV_PASSWORD);
-      return {
-        ...credential.user,
-        phoneNumber: localOtpSession.phone,
-      };
-    }
+    await signInAnonymously(auth);
+    localStorage.setItem(DEV_PHONE_STORAGE_KEY, localOtpSession.phone);
+    const pseudoUid = `dev_${localOtpSession.phone.replace(/\D/g, '')}`;
+    return {
+      uid: pseudoUid,
+      phoneNumber: localOtpSession.phone,
+      isAnonymous: true,
+    };
   }
 
   if (!confirmationResultCache) {
@@ -96,5 +86,10 @@ export function watchAuthState(callback) {
 
 export async function logout() {
   await signOut(auth);
+  localStorage.removeItem(DEV_PHONE_STORAGE_KEY);
   localStorage.removeItem('dadoUser');
+}
+
+export function getDevBypassPhone() {
+  return localStorage.getItem(DEV_PHONE_STORAGE_KEY);
 }
