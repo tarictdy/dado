@@ -1,14 +1,18 @@
-import { getIdToken } from './auth.js';
+import { getDevBypassPhone, getIdToken } from './auth.js';
 
 const API_BASE_URL = '/api';
 
 async function request(path, options = {}) {
   const token = await getIdToken();
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const devBypassPhone = getDevBypassPhone();
+  const joiner = path.includes('?') ? '&' : '?';
+  const requestPath = `${API_BASE_URL}${path}${devBypassPhone ? `${joiner}dev_phone=${encodeURIComponent(devBypassPhone)}` : ''}`;
+  const response = await fetch(requestPath, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(devBypassPhone ? { 'x-dado-dev-phone': devBypassPhone } : {}),
       ...(options.headers || {}),
     },
   });
