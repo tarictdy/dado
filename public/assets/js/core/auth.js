@@ -17,6 +17,10 @@ function normalizePhone(phone) {
   return String(phone || '').replace(/\s+/g, '');
 }
 
+function normalizePhone(phone) {
+  return String(phone || '').replace(/\s+/g, '');
+}
+
 export async function sendOTP(phone, containerId) {
   const normalizedPhone = normalizePhone(phone);
   if (!/^\+\d{8,15}$/.test(normalizedPhone)) {
