@@ -7,45 +7,65 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/auth.css" />
   </head>
-  <body>
-    <main class="auth-layout">
-      <section class="auth-card card">
-        <a class="brand" href="/index.html">❤ DADO</a>
-        <span class="badge">Connexion</span>
-        <h1>Retrouve ton espace en quelques secondes.</h1>
-        <p>Entre ton numéro, valide le SMS OTP et recharge ton profil Firebase instantanément.</p>
+  <body class="page one-container nav-below-header">
+    <header class="site-header">
+      <div class="inside-header grid-container">
+        <p class="main-title"><a href="/index.html">DADO</a></p>
+      </div>
+    </header>
 
-        <ul class="auth-hero-list">
-          <li>Connexion fluide par téléphone.</li>
-          <li>Profil récupéré depuis Firestore.</li>
-          <li>Logs de connexion disponibles dans la console.</li>
-        </ul>
-
-        <form id="login-form" class="form-grid">
-          <label>
-            Téléphone
-            <input name="phone" type="tel" placeholder="+2250700000000" required />
-          </label>
-          <button class="button primary" type="submit">Envoyer le code</button>
-        </form>
-
-        <form id="login-otp-form" class="form-grid hidden">
-          <label>
-            Code OTP
-            <input name="otp" type="text" inputmode="numeric" maxlength="6" placeholder="123456" required />
-          </label>
-          <button class="button primary" type="submit">Se connecter</button>
-        </form>
-
-        <div id="recaptcha-container"></div>
-        <p id="status" class="status"></p>
-        <div class="auth-note">
-          <strong>Note debug :</strong> le code OTP SMS n’est pas exposé par Firebase côté client. En revanche,
-          l’état de connexion et le profil chargé sont loggés pour vérification.
+    <nav class="main-navigation nav-align-center" aria-label="Navigation principale">
+      <div class="inside-navigation grid-container">
+        <div class="main-nav">
+          <ul class="menu">
+            <li><a href="/index.html">Accueil</a></li>
+            <li><a href="/register.html">Inscription</a></li>
+            <li><a href="/login.html">Connexion</a></li>
+          </ul>
         </div>
-        <p class="helper">Pas encore de compte ? <a href="/register.html">Créer un compte</a>.</p>
-      </section>
-    </main>
+      </div>
+    </nav>
+
+    <div class="site-content auth-layout">
+      <main class="site-main wp-block-group__inner-container">
+        <section class="inside-article auth-card">
+          <a class="brand" href="/index.html">❤ DADO</a>
+          <span class="badge">Connexion</span>
+          <h1>Retrouve ton espace en quelques secondes.</h1>
+          <p>Entre ton numéro, valide le SMS OTP et recharge ton profil Firebase instantanément.</p>
+
+          <ul class="auth-hero-list">
+            <li>Connexion fluide par téléphone.</li>
+            <li>Profil récupéré depuis Firestore.</li>
+            <li>Logs de connexion disponibles dans la console.</li>
+          </ul>
+
+          <form id="login-form" class="form-grid">
+            <label>
+              Téléphone
+              <input name="phone" type="tel" placeholder="+2250700000000" required />
+            </label>
+            <button id="sign-in-button" class="button primary" type="submit">Envoyer le code</button>
+          </form>
+
+          <form id="login-otp-form" class="form-grid hidden">
+            <label>
+              Code OTP
+              <input name="otp" type="text" inputmode="numeric" maxlength="6" placeholder="123456" required />
+            </label>
+            <button class="button primary" type="submit">Se connecter</button>
+          </form>
+
+          <div id="recaptcha-container"></div>
+          <p id="status" class="status"></p>
+          <div class="auth-note">
+            <strong>Mode debug :</strong> l’envoi SMS Firebase est temporairement bypassé. Le code OTP est affiché
+            dans la console navigateur pour te connecter.
+          </div>
+          <p class="helper">Pas encore de compte ? <a href="/register.html">Créer un compte</a>.</p>
+        </section>
+      </main>
+    </div>
 
     <script type="module" src="/assets/js/pages/login.page.js"></script>
   </body>
