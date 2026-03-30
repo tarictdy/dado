@@ -1,16 +1,12 @@
 import {
   auth,
-  getRecaptchaVerifier,
   onAuthStateChanged,
   signInAnonymously,
-  signInWithPhoneNumber,
   signOut,
 } from './firebase-client.js';
 
-let confirmationResultCache = null;
 let localOtpSession = null;
 const BYPASS_SMS_OTP = true;
-const DEV_PHONE_STORAGE_KEY = 'dadoDevPhone';
 
 export async function sendOTP(phone, containerId) {
   const normalizedPhone = String(phone || '').replace(/\s+/g, '');
@@ -29,9 +25,7 @@ export async function sendOTP(phone, containerId) {
     return { verificationId: `local-${Date.now()}` };
   }
 
-  const verifier = getRecaptchaVerifier(containerId);
-  confirmationResultCache = await signInWithPhoneNumber(auth, normalizedPhone, verifier);
-  return confirmationResultCache;
+  throw new Error('Le mode OTP SMS Firebase est désactivé pour le moment.');
 }
 
 export async function verifyOTP(code) {
@@ -52,19 +46,13 @@ export async function verifyOTP(code) {
     }
 
     const credential = await signInAnonymously(auth);
-    localStorage.setItem(DEV_PHONE_STORAGE_KEY, localOtpSession.phone);
     return {
       uid: credential.user.uid,
       phoneNumber: localOtpSession.phone,
       isAnonymous: true,
     };
   }
-
-  if (!confirmationResultCache) {
-    throw new Error('Aucune demande OTP active.');
-  }
-  const credential = await confirmationResultCache.confirm(normalizedCode);
-  return credential.user;
+  throw new Error('Le mode OTP SMS Firebase est désactivé pour le moment.');
 }
 
 export async function getIdToken() {
