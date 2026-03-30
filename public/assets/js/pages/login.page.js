@@ -9,12 +9,12 @@ const statusElement = document.getElementById('status');
 loginForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const formData = new FormData(loginForm);
-  const phone = formData.get('phone');
+  const phone = String(formData.get('phone') || '').replace(/\s+/g, '');
   console.log('[DADO][login] OTP requested for phone:', phone);
 
   try {
     setStatus(statusElement, 'Envoi du code OTP...');
-    const confirmationResult = await sendOTP(phone, 'recaptcha-container');
+    const confirmationResult = await sendOTP(phone, 'sign-in-button');
     console.log('[DADO][login] OTP request started. verificationId:', confirmationResult?.verificationId || 'indisponible');
     otpForm.classList.remove('hidden');
     setStatus(statusElement, 'OTP envoyé. Renseignez le code reçu.');
