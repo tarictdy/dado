@@ -11,11 +11,12 @@ registerForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const formData = new FormData(registerForm);
   pendingProfile = Object.fromEntries(formData.entries());
+  pendingProfile.phone = String(pendingProfile.phone || '').replace(/\s+/g, '');
   console.log('[DADO][register] pending profile captured:', pendingProfile);
 
   try {
     setStatus(statusElement, 'Envoi du code OTP...');
-    const confirmationResult = await sendOTP(pendingProfile.phone, 'recaptcha-container');
+    const confirmationResult = await sendOTP(pendingProfile.phone, 'sign-in-button');
     console.log('[DADO][register] OTP request started. verificationId:', confirmationResult?.verificationId || 'indisponible');
     otpForm.classList.remove('hidden');
     setStatus(statusElement, 'Code envoyé. Entrez l’OTP reçu par SMS.');
@@ -31,6 +32,9 @@ otpForm?.addEventListener('submit', async (event) => {
   const otp = formData.get('otp');
 
   try {
+    if (!pendingProfile) {
+      throw new Error('Commencez par remplir le formulaire d’inscription.');
+    }
     setStatus(statusElement, 'Validation du code OTP...');
     const firebaseUser = await verifyOTP(otp);
     const payload = {
