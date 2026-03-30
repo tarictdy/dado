@@ -13,16 +13,8 @@ let localOtpSession = null;
 const BYPASS_SMS_OTP = true;
 const DEV_PASSWORD = 'Dado_Dev_2026!';
 
-function normalizePhone(phone) {
-  return String(phone || '').replace(/\s+/g, '');
-}
-
-function normalizePhone(phone) {
-  return String(phone || '').replace(/\s+/g, '');
-}
-
 export async function sendOTP(phone, containerId) {
-  const normalizedPhone = normalizePhone(phone);
+  const normalizedPhone = String(phone || '').replace(/\s+/g, '');
   if (!/^\+\d{8,15}$/.test(normalizedPhone)) {
     throw new Error('Numéro invalide. Utilisez le format international, ex: +2250700000000.');
   }
