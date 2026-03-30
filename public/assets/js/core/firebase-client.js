@@ -16,6 +16,9 @@ const firebaseConfig = {
   appId: '1:883360874679:web:35ed08a206d1ad3cb88d32',
 };
 
+// OAuth 2.0 Web Client ID (Firebase project dodo-adbfc)
+const webOAuthClientId = '883360874679-hduihu360dp69og3jl9p2p8r0g3bhfss.apps.googleusercontent.com';
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -40,6 +43,7 @@ function getRecaptchaVerifier(targetId = 'sign-in-button') {
 export {
   app,
   auth,
+  webOAuthClientId,
   getRecaptchaVerifier,
   signInWithPhoneNumber,
   onAuthStateChanged,
