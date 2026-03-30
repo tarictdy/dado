@@ -73,5 +73,10 @@ export function watchAuthState(callback) {
 
 export async function logout() {
   await signOut(auth);
+  localStorage.removeItem(DEV_PHONE_STORAGE_KEY);
   localStorage.removeItem('dadoUser');
+}
+
+export function getDevBypassPhone() {
+  return localStorage.getItem(DEV_PHONE_STORAGE_KEY);
 }
