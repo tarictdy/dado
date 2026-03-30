@@ -5,7 +5,9 @@ const API_BASE_URL = '/api';
 async function request(path, options = {}) {
   const token = await getIdToken();
   const devBypassPhone = getDevBypassPhone();
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const joiner = path.includes('?') ? '&' : '?';
+  const requestPath = `${API_BASE_URL}${path}${devBypassPhone ? `${joiner}dev_phone=${encodeURIComponent(devBypassPhone)}` : ''}`;
+  const response = await fetch(requestPath, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
