@@ -11,7 +11,7 @@ async function request(path, options = {}) {
     ...options,
     headers: {
       'Content-Type': 'application/json',
-      ...(token && !devBypassPhone ? { Authorization: `Bearer ${token}` } : {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(devBypassPhone ? { 'x-dado-dev-phone': devBypassPhone } : {}),
       ...(options.headers || {}),
     },

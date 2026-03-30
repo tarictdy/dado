@@ -51,11 +51,10 @@ export async function verifyOTP(code) {
       throw new Error('OTP incorrect.');
     }
 
-    await signInAnonymously(auth);
+    const credential = await signInAnonymously(auth);
     localStorage.setItem(DEV_PHONE_STORAGE_KEY, localOtpSession.phone);
-    const pseudoUid = `dev_${localOtpSession.phone.replace(/\D/g, '')}`;
     return {
-      uid: pseudoUid,
+      uid: credential.user.uid,
       phoneNumber: localOtpSession.phone,
       isAnonymous: true,
     };
