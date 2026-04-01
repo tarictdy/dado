@@ -1,34 +1,113 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DADO — Dashboard</title>
+    <title>DADO - Dashboard</title>
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/dashboard.css" />
   </head>
-  <body>
-    <main class="dashboard-layout">
+  <body class="page one-container nav-below-header">
+    <header class="site-header">
+      <div class="inside-header grid-container">
+        <p class="main-title"><a href="/index.html">DADO</a></p>
+      </div>
+    </header>
+
+    <nav class="main-navigation nav-align-center" aria-label="Navigation principale">
+      <div class="inside-navigation grid-container">
+        <div class="main-nav">
+          <ul class="menu">
+            <li><a href="/index.html">Accueil</a></li>
+            <li><a href="/dashboard.html" class="active" aria-current="page">Dashboard</a></li>
+            <li><a href="/profile.html">Profil</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="site-content dashboard-layout">
       <header class="card dashboard-header">
         <div>
-          <span class="badge">Espace privé</span>
+          <span class="badge">Espace prive</span>
           <h1 id="dashboard-title">Bienvenue</h1>
           <p id="dashboard-subtitle">Chargement de votre espace...</p>
           <div id="profile-highlight" class="profile-highlight hidden"></div>
         </div>
         <div class="actions">
-          <a class="button secondary" href="/profile.html">Compléter le profil</a>
-          <button class="button primary" id="logout-button" type="button">Déconnexion</button>
+          <a class="button secondary" href="/profile.html">Completer le profil</a>
+          <button class="button primary" id="logout-button" type="button">Deconnexion</button>
         </div>
       </header>
 
+      <section class="kpi-grid">
+        <article class="kpi">
+          <span>Taux completion</span>
+          <strong>82%</strong>
+        </article>
+        <article class="kpi">
+          <span>Score confiance</span>
+          <strong>Fort</strong>
+        </article>
+        <article class="kpi">
+          <span>Statut abonnement</span>
+          <strong>Suivi en direct</strong>
+        </article>
+      </section>
+
       <section class="dashboard-grid">
-        <article class="card"><h2>Profil</h2><p id="profile-summary"></p></article>
-        <article class="card"><h2>Monétisation</h2><p id="subscription-summary"></p></article>
-        <article class="card"><h2>Actions clés</h2><ul id="role-actions"></ul></article>
+        <article class="card">
+          <h2>Profil</h2>
+          <p id="profile-summary">Analyse en cours...</p>
+        </article>
+        <article class="card">
+          <h2>Monetisation</h2>
+          <p id="subscription-summary">Statut en cours de recuperation...</p>
+        </article>
+        <article class="card">
+          <h2>Actions cles</h2>
+          <ul id="role-actions"></ul>
+        </article>
+      </section>
+
+      <section class="dashboard-feed">
+        <article class="card">
+          <h2>Priorites de la semaine</h2>
+          <ul>
+            <li>Finaliser la completion profil a 100%.</li>
+            <li>Activer les options premium les plus utiles.</li>
+            <li>Mettre a jour votre description avec mots cles.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Timeline</h2>
+          <ul class="timeline">
+            <li>
+              <strong>Compte valide</strong>
+              Vous etes authentifie via OTP serveur.
+            </li>
+            <li>
+              <strong>Profil structure</strong>
+              Les informations de base sont stockees dans Firestore.
+            </li>
+            <li>
+              <strong>Expansion possible</strong>
+              Votre espace est pret pour matching, annonces et abonnement.
+            </li>
+          </ul>
+        </article>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div>
+        <span>DADO - Dashboard utilisateur</span>
+        <span>Suivi profil, role et abonnement en temps reel</span>
+      </div>
+    </footer>
 
     <script type="module" src="/assets/js/pages/dashboard.page.js"></script>
   </body>
 </html>
+
+

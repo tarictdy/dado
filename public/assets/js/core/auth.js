@@ -1,82 +1,119 @@
-import {
-  auth,
-  onAuthStateChanged,
-  signInAnonymously,
-  signOut,
-} from './firebase-client.js';
+﻿const AUTH_API_BASE = '/api/auth';
+const AUTH_TOKEN_STORAGE_KEY = 'dadoAuthToken';
+const USER_STORAGE_KEY = 'dadoUser';
 
 let localOtpSession = null;
-const BYPASS_SMS_OTP = true;
 
-export async function sendOTP(phone, containerId) {
-  const normalizedPhone = String(phone || '').replace(/\s+/g, '');
-  if (!/^\+\d{8,15}$/.test(normalizedPhone)) {
-    throw new Error('Numéro invalide. Utilisez le format international, ex: +2250700000000.');
-  }
-
-  if (BYPASS_SMS_OTP) {
-    const otpCode = String(Math.floor(100000 + Math.random() * 900000));
-    localOtpSession = {
-      otpCode,
-      phone: normalizedPhone,
-      expiresAt: Date.now() + 5 * 60 * 1000,
-    };
-    console.log(`[DADO][OTP-BYPASS] Code OTP pour ${normalizedPhone}: ${otpCode}`);
-    return { verificationId: `local-${Date.now()}` };
-  }
-
-  throw new Error('Le mode OTP SMS Firebase est désactivé pour le moment.');
+function normalizePhone(phone) {
+  return String(phone || '').replace(/\s+/g, '');
 }
 
-export async function verifyOTP(code) {
+function readStoredUser() {
+  const raw = localStorage.getItem(USER_STORAGE_KEY);
+  if (!raw) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(raw);
+  } catch (_error) {
+    localStorage.removeItem(USER_STORAGE_KEY);
+    return null;
+  }
+}
+
+async function parseApiResponse(response) {
+  const payload = await response.json().catch(() => ({ message: 'Erreur inconnue.' }));
+  if (!response.ok) {
+    throw new Error(payload.message || 'Erreur API.');
+  }
+  return payload;
+}
+
+export async function sendOTP(phone, _containerId, mode = 'login') {
+  const normalizedPhone = normalizePhone(phone);
+  if (!/^\+\d{8,15}$/.test(normalizedPhone)) {
+    throw new Error('Numero invalide. Utilisez le format international, ex: +2250700000000.');
+  }
+
+  const normalizedMode = mode === 'register' ? 'register' : 'login';
+  const response = await fetch(`${AUTH_API_BASE}/request-otp`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ phone: normalizedPhone, mode: normalizedMode }),
+  });
+
+  const payload = await parseApiResponse(response);
+  localOtpSession = {
+    phone: normalizedPhone,
+    mode: normalizedMode,
+    requestId: payload.requestId,
+    expiresAt: payload.expiresAt,
+  };
+
+  return payload;
+}
+
+export async function verifyOTP(code, options = {}) {
   const normalizedCode = String(code || '').trim();
   if (!/^\d{6}$/.test(normalizedCode)) {
-    throw new Error('Code OTP invalide. Entrez les 6 chiffres reçus.');
+    throw new Error('Code OTP invalide. Entrez les 6 chiffres.');
   }
 
-  if (BYPASS_SMS_OTP) {
-    if (!localOtpSession) {
-      throw new Error('Aucune demande OTP active.');
-    }
-    if (Date.now() > localOtpSession.expiresAt) {
-      throw new Error('OTP expiré. Veuillez demander un nouveau code.');
-    }
-    if (localOtpSession.otpCode !== normalizedCode) {
-      throw new Error('OTP incorrect.');
-    }
-
-    const credential = await signInAnonymously(auth);
-    return {
-      uid: credential.user.uid,
-      phoneNumber: localOtpSession.phone,
-      isAnonymous: true,
-    };
+  if (!localOtpSession) {
+    throw new Error('Aucune demande OTP active.');
   }
-  throw new Error('Le mode OTP SMS Firebase est désactivé pour le moment.');
+
+  const response = await fetch(`${AUTH_API_BASE}/verify-otp`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      phone: localOtpSession.phone,
+      mode: localOtpSession.mode,
+      code: normalizedCode,
+      profile: options.profile,
+    }),
+  });
+
+  const payload = await parseApiResponse(response);
+  localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, payload.token);
+  localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(payload.user));
+  localOtpSession = null;
+
+  return {
+    uid: payload.user?.id,
+    phoneNumber: payload.user?.phone,
+    user: payload.user,
+    token: payload.token,
+  };
 }
 
 export async function getIdToken() {
-  const user = auth.currentUser;
-  if (!user) {
-    return null;
-  }
-  return user.getIdToken();
+  return localStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
 }
 
 export function getCurrentUser() {
-  return auth.currentUser;
+  return readStoredUser();
 }
 
 export function watchAuthState(callback) {
-  return onAuthStateChanged(auth, callback);
+  callback(getCurrentUser());
+  return () => {};
 }
 
 export async function logout() {
-  await signOut(auth);
-  localStorage.removeItem(DEV_PHONE_STORAGE_KEY);
-  localStorage.removeItem('dadoUser');
-}
+  const token = localStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
+  if (token) {
+    await fetch(`${AUTH_API_BASE}/logout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }).catch(() => {});
+  }
 
-export function getDevBypassPhone() {
-  return localStorage.getItem(DEV_PHONE_STORAGE_KEY);
+  localOtpSession = null;
+  localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+  localStorage.removeItem(USER_STORAGE_KEY);
 }

@@ -1,4 +1,4 @@
-import 'dotenv/config';
+﻿import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.static(publicDir));
 
 app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', app: 'DADO', auth: 'Firebase Phone OTP' });
+  res.json({ status: 'ok', app: 'DADO', auth: 'Server OTP + API session' });
 });
 
 app.use('/api/auth', authRoutes);

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DADO — Rencontres, matching & profils premium</title>
+    <title>DADO - Rencontres, matching et profils premium</title>
     <link rel="stylesheet" href="/assets/css/base.css" />
   </head>
   <body class="home one-container nav-below-header">
@@ -17,7 +17,7 @@
       <div class="inside-navigation grid-container">
         <div class="main-nav">
           <ul class="menu">
-            <li><a href="/index.html">Accueil</a></li>
+            <li><a href="/index.html" class="active" aria-current="page">Accueil</a></li>
             <li><a href="/register.html">Inscription</a></li>
             <li><a href="/login.html">Connexion</a></li>
           </ul>
@@ -28,84 +28,102 @@
     <div class="site-content">
       <main class="site-main">
         <section class="inside-article hero">
-          <span class="badge">Dado Dating</span>
-          <h1>Le style d’un vrai site de rencontre avec une palette rose premium.</h1>
+          <span class="badge">Dado dating platform</span>
+          <h1>Une plateforme de rencontres claire, moderne et prete pour scaler.</h1>
           <p>
-            Créez un compte élégant, vérifiez votre numéro avec Firebase, complétez votre profil
-            et retrouvez chaque utilisateur enregistré dans Firestore avec une interface claire et moderne.
+            Creez un compte, validez votre numero avec OTP serveur et completez un profil solide.
+            DADO connecte experience utilisateur premium et fondation technique fiable.
           </p>
 
           <div class="actions">
-            <a class="button primary" href="/register.html">Créer mon profil</a>
-            <a class="button secondary" href="/login.html">J’ai déjà un compte</a>
+            <a class="button primary" href="/register.html">Creer mon profil</a>
+            <a class="button secondary" href="/login.html">J ai deja un compte</a>
           </div>
 
           <div class="hero-stats">
             <article class="stat-pill">
-              <strong>OTP</strong>
-              <span>Connexion rapide par téléphone</span>
+              <strong>Onboarding en 2 min</strong>
+              <span>Inscription rapide avec verification par SMS.</span>
             </article>
             <article class="stat-pill">
-              <strong>Firestore</strong>
-              <span>Profils sauvegardés côté Firebase</span>
+              <strong>Base Firestore propre</strong>
+              <span>Profils structures et exploitables pour matching.</span>
             </article>
             <article class="stat-pill">
-              <strong>Match vibe</strong>
-              <span>Expérience immersive style dating app</span>
+              <strong>UX mobile first</strong>
+              <span>Interface lisible, legere et orientee conversion.</span>
             </article>
           </div>
         </section>
 
         <section class="wp-block-group__inner-container feature-grid">
           <article class="inside-article">
-            <h2>Ambiance premium</h2>
-            <p>Palette inspirée de ton design, navigation uppercase et cartes aérées.</p>
+            <h2>Design premium</h2>
+            <p>Direction visuelle pro, typography marquee et composants harmonises sur tout le site.</p>
           </article>
           <article class="inside-article">
-            <h2>Création utilisateur</h2>
-            <p>Chaque inscription validée écrit le profil dans la collection <strong>users</strong> de Firestore.</p>
+            <h2>Funnel d acquisition</h2>
+            <p>Chaque compte valide alimente la collection <strong>users</strong> pour activer CRM et segmentation.</p>
           </article>
           <article class="inside-article">
-            <h2>Logs utiles</h2>
-            <p>Des logs front et back affichent le payload, l’UID et la réponse d’enregistrement.</p>
+            <h2>Tracking operationnel</h2>
+            <p>Logs front et back visibles pour suivre OTP, UID et statut de creation utilisateur.</p>
           </article>
         </section>
 
         <section class="wp-block-group__inner-container content-grid">
           <article class="inside-article content-card">
-            <h2>Comment ça marche</h2>
+            <h2>Parcours utilisateur</h2>
             <ol>
-              <li>Inscription rapide avec numéro de téléphone + OTP Firebase.</li>
-              <li>Création de profil enrichi (bio, ville, catégories, objectifs).</li>
-              <li>Accès dashboard pour gérer visibilité et activité.</li>
+              <li>Inscription avec telephone, role et infos de base.</li>
+              <li>Validation OTP serveur puis creation du profil en base.</li>
+              <li>Completion du profil et acces au dashboard prive.</li>
             </ol>
           </article>
           <article class="inside-article content-card">
             <h2>Pourquoi DADO</h2>
             <ul>
-              <li>Identité vérifiée pour limiter les faux profils.</li>
-              <li>Expérience mobile-first et parcours en 2 étapes.</li>
-              <li>Base Firestore prête pour matching, annonces et premium.</li>
+              <li>Verification d identite pour limiter les faux comptes.</li>
+              <li>Architecture simple a maintenir et a enrichir.</li>
+              <li>Base solide pour abonnement premium et matching intelligent.</li>
             </ul>
           </article>
+        </section>
+
+        <section class="inside-article wp-block-group__inner-container content-card">
+          <h2>Ce que vous pouvez lancer ensuite</h2>
+          <ul>
+            <li>Systeme de likes et favoris entre profils verifies.</li>
+            <li>Messagerie en temps reel avec moderation de base.</li>
+            <li>Plan premium avec visibilite boostee et analytics.</li>
+          </ul>
         </section>
 
         <section class="inside-article faq wp-block-group__inner-container">
           <h2>FAQ rapide</h2>
           <details>
-            <summary>Mes données sont-elles sauvegardées ?</summary>
-            <p>Oui, les profils validés sont stockés dans la collection <strong>users</strong> de Firestore.</p>
+            <summary>Mes donnees sont elles sauvegardees ?</summary>
+            <p>Oui. Les profils valides sont stockes dans la collection <strong>users</strong> sur Firestore.</p>
           </details>
           <details>
-            <summary>Que faire si je ne reçois pas le code OTP ?</summary>
-            <p>Vérifie le format international du numéro puis relance l’envoi depuis la page de connexion/inscription.</p>
+            <summary>Que faire si je ne recois pas le code OTP ?</summary>
+            <p>Verifiez le format international du numero puis relancez l envoi depuis inscription ou connexion.</p>
           </details>
           <details>
-            <summary>Puis-je compléter mon profil plus tard ?</summary>
-            <p>Oui, après connexion tu es redirigé vers la page profil si ton compte n’est pas encore complété.</p>
+            <summary>Puis je completer mon profil plus tard ?</summary>
+            <p>Oui. Apres connexion, vous etes redirige vers le profil tant que la completion n est pas terminee.</p>
           </details>
         </section>
       </main>
     </div>
+
+    <footer class="site-footer">
+      <div>
+        <span>DADO - Plateforme web de rencontres verifiees.</span>
+        <span>Firebase OTP - Firestore - Dashboard prive</span>
+      </div>
+    </footer>
   </body>
 </html>
+
+

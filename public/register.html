@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DADO — Inscription</title>
+    <title>DADO - Inscription</title>
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/auth.css" />
   </head>
@@ -19,51 +19,58 @@
         <div class="main-nav">
           <ul class="menu">
             <li><a href="/index.html">Accueil</a></li>
-            <li><a href="/register.html">Inscription</a></li>
+            <li><a href="/register.html" class="active" aria-current="page">Inscription</a></li>
             <li><a href="/login.html">Connexion</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <main class="auth-layout site-content">
-      <section class="auth-card inside-article wp-block-group__inner-container">
-        <a class="brand" href="/index.html">❤ DADO</a>
+    <main class="site-content auth-layout">
+      <section class="inside-article auth-card">
+        <a class="brand" href="/index.html">DADO onboarding</a>
         <span class="badge">Inscription</span>
-        <h1>Crée un profil qui donne envie de matcher.</h1>
-        <p>Design dating app, vérification Firebase par SMS et sauvegarde immédiate dans Firestore.</p>
+        <h1>Creez un profil impactant des le premier ecran.</h1>
+        <p>Validation OTP, creation Firestore et onboarding structure pour une base propre.</p>
 
         <ul class="auth-hero-list">
-          <li>Numéro vérifié par OTP Firebase.</li>
-          <li>Profil enregistré dans la base <strong>users</strong>.</li>
-          <li>Logs visibles pour suivre l’inscription.</li>
+          <li>Verification telephone avant creation effective du compte.</li>
+          <li>Profil enregistre dans la collection <strong>users</strong>.</li>
+          <li>Parcours extensible pour matching, annonces et premium.</li>
         </ul>
 
         <form id="register-form" class="form-grid">
+          <div class="split-field">
+            <label>
+              Nom complet
+              <input name="fullName" type="text" placeholder="Ex: Fatou Diop" required />
+            </label>
+            <label>
+              Pseudo
+              <input name="pseudo" type="text" placeholder="Ex: coeur.soleil" required />
+            </label>
+          </div>
+
+          <div class="split-field">
+            <label>
+              Date de naissance
+              <input name="birthDate" type="date" required />
+            </label>
+            <label>
+              Telephone
+              <input name="phone" type="tel" placeholder="+2250700000000" required />
+            </label>
+          </div>
+
           <label>
-            Nom complet
-            <input name="fullName" type="text" placeholder="Ex: Fatou Diop" required />
-          </label>
-          <label>
-            Pseudo
-            <input name="pseudo" type="text" placeholder="Ex: coeur.violet" required />
-          </label>
-          <label>
-            Date de naissance
-            <input name="birthDate" type="date" required />
-          </label>
-          <label>
-            Téléphone
-            <input name="phone" type="tel" placeholder="+2250700000000" required />
-          </label>
-          <label>
-            Rôle
+            Role
             <select name="role" required>
               <option value="CLIENT">Client</option>
               <option value="PRESTATAIRE">Prestataire</option>
               <option value="VENDEUR_PRODUIT">Vendeur produit</option>
             </select>
           </label>
+
           <button id="sign-in-button" class="button primary" type="submit">Recevoir le code OTP</button>
         </form>
 
@@ -78,13 +85,53 @@
         <div id="recaptcha-container"></div>
         <p id="status" class="status"></p>
         <div class="auth-note">
-          <strong>Mode debug :</strong> l’envoi SMS Firebase est temporairement bypassé. Le code OTP est affiché dans
-          la console navigateur pour valider l’inscription.
+          <strong>Mode debug :</strong> le code OTP est genere cote serveur et renvoye en test dans le message de statut.
         </div>
-        <p class="helper">Déjà inscrit ? <a href="/login.html">Connectez-vous</a>.</p>
+        <p class="helper">Deja inscrit ? <a href="/login.html">Connectez vous</a>.</p>
       </section>
+
+      <aside class="inside-article auth-side">
+        <h2>Un onboarding qui convertit</h2>
+        <p>
+          Le formulaire collecte uniquement les donnees utiles pour demarrer vite sans compromettre la qualite.
+        </p>
+        <ul>
+          <li>Structure des champs orientee completion.</li>
+          <li>Profil enrichissable ensuite dans l espace prive.</li>
+          <li>Compatibilite immediate avec segmentation par role.</li>
+        </ul>
+
+        <div class="metric-grid">
+          <article class="metric">
+            <strong>3 roles</strong>
+            <span>Client / Pro / Vendeur</span>
+          </article>
+          <article class="metric">
+            <strong>OTP</strong>
+            <span>Verification fiable</span>
+          </article>
+          <article class="metric">
+            <strong>UID</strong>
+            <span>UID genere serveur</span>
+          </article>
+          <article class="metric">
+            <strong>Ready</strong>
+            <span>Base scalable</span>
+          </article>
+        </div>
+      </aside>
     </main>
+
+    <footer class="site-footer">
+      <div>
+        <span>DADO - Inscription avec verification OTP</span>
+        <span>Firestore users collection activee</span>
+      </div>
+    </footer>
 
     <script type="module" src="/assets/js/pages/register.page.js"></script>
   </body>
 </html>
+
+
+

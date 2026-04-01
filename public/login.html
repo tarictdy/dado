@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DADO — Connexion</title>
+    <title>DADO - Connexion</title>
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/auth.css" />
   </head>
@@ -20,54 +20,91 @@
           <ul class="menu">
             <li><a href="/index.html">Accueil</a></li>
             <li><a href="/register.html">Inscription</a></li>
-            <li><a href="/login.html">Connexion</a></li>
+            <li><a href="/login.html" class="active" aria-current="page">Connexion</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="site-content auth-layout">
-      <main class="site-main wp-block-group__inner-container">
-        <section class="inside-article auth-card">
-          <a class="brand" href="/index.html">❤ DADO</a>
-          <span class="badge">Connexion</span>
-          <h1>Retrouve ton espace en quelques secondes.</h1>
-          <p>Entre ton numéro, valide le SMS OTP et recharge ton profil Firebase instantanément.</p>
+    <main class="site-content auth-layout">
+      <section class="inside-article auth-card">
+        <a class="brand" href="/index.html">DADO secure access</a>
+        <span class="badge">Connexion</span>
+        <h1>Connectez vous en quelques secondes.</h1>
+        <p>Entrez votre numero, validez le code OTP et retrouvez votre espace personnalise.</p>
 
-          <ul class="auth-hero-list">
-            <li>Connexion fluide par téléphone.</li>
-            <li>Profil récupéré depuis Firestore.</li>
-            <li>Logs de connexion disponibles dans la console.</li>
-          </ul>
+        <ul class="auth-hero-list">
+          <li>Verification par telephone et OTP serveur.</li>
+          <li>Chargement automatique du profil Firestore.</li>
+          <li>Parcours fluide sur mobile comme sur desktop.</li>
+        </ul>
 
-          <form id="login-form" class="form-grid">
-            <label>
-              Téléphone
-              <input name="phone" type="tel" placeholder="+2250700000000" required />
-            </label>
-            <button id="sign-in-button" class="button primary" type="submit">Envoyer le code</button>
-          </form>
+        <form id="login-form" class="form-grid">
+          <label>
+            Telephone
+            <input name="phone" type="tel" placeholder="+2250700000000" required />
+          </label>
+          <button id="sign-in-button" class="button primary" type="submit">Envoyer le code</button>
+        </form>
 
-          <form id="login-otp-form" class="form-grid hidden">
-            <label>
-              Code OTP
-              <input name="otp" type="text" inputmode="numeric" maxlength="6" placeholder="123456" required />
-            </label>
-            <button class="button primary" type="submit">Se connecter</button>
-          </form>
+        <form id="login-otp-form" class="form-grid hidden">
+          <label>
+            Code OTP
+            <input name="otp" type="text" inputmode="numeric" maxlength="6" placeholder="123456" required />
+          </label>
+          <button class="button primary" type="submit">Se connecter</button>
+        </form>
 
-          <div id="recaptcha-container"></div>
-          <p id="status" class="status"></p>
-          <div class="auth-note">
-            <strong>Mode debug :</strong> l’envoi SMS Firebase est temporairement bypassé. Le code OTP est affiché
-            dans la console navigateur pour te connecter.
-          </div>
-          <p class="helper">Pas encore de compte ? <a href="/register.html">Créer un compte</a>.</p>
-        </section>
-      </main>
-    </div>
+        <div id="recaptcha-container"></div>
+        <p id="status" class="status"></p>
+        <div class="auth-note">
+          <strong>Mode debug :</strong> le code OTP est genere cote serveur et renvoye en test dans le message de statut.
+        </div>
+        <p class="helper">Pas encore de compte ? <a href="/register.html">Creer un compte</a>.</p>
+      </section>
 
-      <script type="module" src="/assets/js/pages/login.page.js"></script>
-    </div>
+      <aside class="inside-article auth-side">
+        <h2>Session protegee</h2>
+        <p>
+          L acces OTP limite les connexions frauduleuses et garantit une meilleure qualite des profils actifs.
+        </p>
+        <ul>
+          <li>Validation rapide et detection des erreurs de saisie.</li>
+          <li>Redirection intelligente vers profil ou dashboard.</li>
+          <li>Socle ideal pour activer paiement et abonnement premium.</li>
+        </ul>
+
+        <div class="metric-grid">
+          <article class="metric">
+            <strong>2 etapes</strong>
+            <span>Login + OTP</span>
+          </article>
+          <article class="metric">
+            <strong>100%</strong>
+            <span>Profil rattache UID</span>
+          </article>
+          <article class="metric">
+            <strong>Realtime</strong>
+            <span>Statut visible en UI</span>
+          </article>
+          <article class="metric">
+            <strong>Simple</strong>
+            <span>UX lisible</span>
+          </article>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <span>DADO - Connexion securisee OTP</span>
+        <span>Besoin d un compte ? Inscrivez vous en 2 minutes</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/assets/js/pages/login.page.js"></script>
   </body>
 </html>
+
+
+

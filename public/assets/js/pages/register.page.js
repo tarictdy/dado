@@ -1,5 +1,4 @@
-import { sendOTP, verifyOTP } from '../core/auth.js';
-import { registerProfile } from '../core/api.js';
+﻿import { sendOTP, verifyOTP } from '../core/auth.js';
 import { setStatus } from '../core/ui.js';
 
 const registerForm = document.getElementById('register-form');
@@ -12,14 +11,14 @@ registerForm?.addEventListener('submit', async (event) => {
   const formData = new FormData(registerForm);
   pendingProfile = Object.fromEntries(formData.entries());
   pendingProfile.phone = String(pendingProfile.phone || '').replace(/\s+/g, '');
-  console.log('[DADO][register] pending profile captured:', pendingProfile);
 
   try {
-    setStatus(statusElement, 'Envoi du code OTP...');
-    const confirmationResult = await sendOTP(pendingProfile.phone, 'sign-in-button');
-    console.log('[DADO][register] OTP request started. verificationId:', confirmationResult?.verificationId || 'indisponible');
+    setStatus(statusElement, 'Generation du code OTP...');
+    const result = await sendOTP(pendingProfile.phone, 'sign-in-button', 'register');
     otpForm.classList.remove('hidden');
-    setStatus(statusElement, 'Code envoyé. Entrez l’OTP reçu par SMS.');
+
+    const debugMessage = result.otpCode ? ` Code de test: ${result.otpCode}` : '';
+    setStatus(statusElement, `OTP genere. Entrez le code pour finaliser l inscription.${debugMessage}`);
   } catch (error) {
     console.error('[DADO][register] OTP request failed:', error);
     setStatus(statusElement, error.message, true);
@@ -33,22 +32,15 @@ otpForm?.addEventListener('submit', async (event) => {
 
   try {
     if (!pendingProfile) {
-      throw new Error('Commencez par remplir le formulaire d’inscription.');
+      throw new Error('Commencez par remplir le formulaire d inscription.');
     }
-    setStatus(statusElement, 'Validation du code OTP...');
-    const firebaseUser = await verifyOTP(otp);
-    const payload = {
-      uid: firebaseUser.uid,
-      ...pendingProfile,
-    };
-    console.log('[DADO][register] Firebase user verified:', { uid: firebaseUser.uid, phoneNumber: firebaseUser.phoneNumber });
-    console.log('[DADO][register] registerProfile payload:', payload);
-    const profile = await registerProfile(payload);
-    console.log('[DADO][register] profile saved in Firestore:', profile);
-    localStorage.setItem('dadoUser', JSON.stringify(profile.user));
-    window.location.href = profile.user.isProfileCompleted ? '/dashboard.html' : '/profile.html';
+
+    setStatus(statusElement, 'Verification OTP et finalisation de l inscription...');
+    const authResult = await verifyOTP(otp, { profile: pendingProfile });
+    localStorage.setItem('dadoUser', JSON.stringify(authResult.user));
+    window.location.href = authResult.user?.isProfileCompleted ? '/dashboard.html' : '/profile.html';
   } catch (error) {
-    console.error('[DADO][register] OTP verification / profile save failed:', error);
+    console.error('[DADO][register] OTP verification failed:', error);
     setStatus(statusElement, error.message, true);
   }
 });

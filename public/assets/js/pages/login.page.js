@@ -1,4 +1,4 @@
-import { sendOTP, verifyOTP } from '../core/auth.js';
+﻿import { sendOTP, verifyOTP } from '../core/auth.js';
 import { getCurrentProfile } from '../core/api.js';
 import { setStatus } from '../core/ui.js';
 
@@ -10,14 +10,14 @@ loginForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const formData = new FormData(loginForm);
   const phone = String(formData.get('phone') || '').replace(/\s+/g, '');
-  console.log('[DADO][login] OTP requested for phone:', phone);
 
   try {
-    setStatus(statusElement, 'Envoi du code OTP...');
-    const confirmationResult = await sendOTP(phone, 'sign-in-button');
-    console.log('[DADO][login] OTP request started. verificationId:', confirmationResult?.verificationId || 'indisponible');
+    setStatus(statusElement, 'Generation du code OTP...');
+    const result = await sendOTP(phone, 'sign-in-button', 'login');
     otpForm.classList.remove('hidden');
-    setStatus(statusElement, 'OTP envoyé. Renseignez le code reçu.');
+
+    const debugMessage = result.otpCode ? ` Code de test: ${result.otpCode}` : '';
+    setStatus(statusElement, `OTP genere. Entrez le code pour vous connecter.${debugMessage}`);
   } catch (error) {
     console.error('[DADO][login] OTP request failed:', error);
     setStatus(statusElement, error.message, true);
@@ -29,11 +29,9 @@ otpForm?.addEventListener('submit', async (event) => {
   const formData = new FormData(otpForm);
 
   try {
-    setStatus(statusElement, 'Connexion en cours...');
-    const firebaseUser = await verifyOTP(formData.get('otp'));
-    console.log('[DADO][login] Firebase user verified:', { uid: firebaseUser.uid, phoneNumber: firebaseUser.phoneNumber });
+    setStatus(statusElement, 'Verification OTP et connexion...');
+    await verifyOTP(formData.get('otp'));
     const profile = await getCurrentProfile();
-    console.log('[DADO][login] Firestore profile loaded:', profile);
     localStorage.setItem('dadoUser', JSON.stringify(profile.user));
     window.location.href = profile.user.isProfileCompleted ? '/dashboard.html' : '/profile.html';
   } catch (error) {
